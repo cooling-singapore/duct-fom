@@ -1,0 +1,30 @@
+{
+  "name": "bem-cea-dcn",
+  "input": [
+    {
+      "name": "cea_run_package",
+      "data_type": "BEMCEA.RunPackage",
+      "data_format": "archive(zip)"
+    },
+    {
+      "name": "cea_databases",
+      "data_type": "BEMCEA.Databases",
+      "data_format": "archive(zip)"
+    }
+  ],
+  "output": [
+    {
+      "name": "supply_systems",
+      "data_type": "BEMCEA.SupplySystems",
+      "data_format": "json"
+    },
+    {
+      "name": "ah_emissions",
+      "data_type": "BEMCEA.AHEmissions",
+      "data_format": "csv"
+    }
+  ],
+  "configurations": [
+    "default"
+  ]
+}

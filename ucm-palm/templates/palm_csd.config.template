@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#--------------------------------------------------------------------------------#
+# This file is part of the PALM model system.
+#
+# PALM is free software: you can redistribute it and/or modify it under the terms
+# of the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+#
+# PALM is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# PALM. If not, see <http://www.gnu.org/licenses/>.
+#
+# Copyright 1997-2021  Leibniz Universitaet Hannover
+#--------------------------------------------------------------------------------#
+#
+# Current revisions:
+# -----------------
+#
+#
+# Former revisions:
+# -----------------
+# $Id: .csd.config.default 4843 2021-01-15 15:22:11Z raasch $
+# Change default values for some global attributes to be compatible with
+# (UC)2 data standard
+# 
+# 4481 2020-03-31 18:55:54Z maronga
+# Updated configuration
+# 
+# 3567 2018-11-27 13:59:21Z maronga
+# Initial revisions
+#
+# Description:
+# ------------
+# Default configuration file for palm_csd
+#
+# @Author Bjoern Maronga (maronga@muk.uni-hannover.de
+#------------------------------------------------------------------------------#
+
+[global]
+author = Luis Santos, lguilhermers@gmail.com
+contact_person = Luis Santos, lguilhermers@gmail.com
+acronym = LS
+comment = generated via pre_palm_csd followed by palm_csd
+data_content =
+dependencies = 
+keywords = 
+source = 
+campaign =
+location =
+site =
+institution =
+palm_version = 22
+rotation_angle = 0.0
+references = 
+
+
+[settings]
+lai_roof_intensive = 1.5
+lai_roof_extensive = 3.0
+lai_high_vegetation_default = 6.0
+lai_low_vegetation_default = 3.0
+lai_alpha = 5.0
+lai_beta = 3.0
+patch_height_default = 10.0
+bridge_width = 3.0
+debug_mode = False
+season = summer
+vegetation_type_below_trees = 3
+
+[output]
+path = ###OUTPUT_PATH###
+file_out = ###OUTPUT_FILE_OUT###
+version = 1
+
+[domain_root]
+pixel_size = 5.0
+origin_x = 0
+origin_y = 0
+nx = ###DOMAIN_ROOT_NX###
+ny = ###DOMAIN_ROOT_NY###
+buildings_3d = False
+dz = 5.0
+allow_high_vegetation = False
+generate_vegetation_patches = True
+use_palm_z_axis= False
+interpolate_terrain = False
+domain_parent
+vegetation_on_roofs = False
+street_trees = True
+overhanging_trees = True
+water_temperature_per_water_type = 301.15, 301.15, 301.15, 301.15, 301.15,
+building_albedo = False
+
+[input_01]
+path = ###INPUT_FILE_PATH###
+pixel_size = 5.0
+file_x = ###INPUT_FILE_X_UTM###
+file_y = ###INPUT_FILE_Y_UTM###
+file_x_UTM = ###INPUT_FILE_X_UTM###
+file_y_UTM = ###INPUT_FILE_Y_UTM###
+file_lat = ###INPUT_FILE_LAT_DEG###
+file_lon = ###INPUT_FILE_LON_DEG###
+file_zt = ###INPUT_FILE_ZT###
+file_buildings_2d = ###INPUT_FILE_BLD_HEIGHT###
+file_building_id = ###INPUT_FILE_BLD_ID###
+file_building_type = ###INPUT_FILE_BLD_TYPE###
+file_bridges_2d = 
+file_bridges_id = 
+#file_lai =  empty_float.nc
+file_vegetation_type = ###INPUT_FILE_VEGETATION###
+file_vegetation_height = ###INPUT_FILE_ZT###
+file_pavement_type = ###INPUT_FILE_PAVEMENT###
+file_water_type = ###INPUT_FILE_WATER###
+# file_soil_type = Berlin_soil_type_15m_DLR.nc
+file_street_type =  ###INPUT_FILE_EMPTY_FLOAT###
+file_street_crossings =  ###INPUT_FILE_EMPTY_FLOAT###
+# file_tree_height =  empty_float.nc
+# file_tree_crown_diameter =  empty_float.nc
+# file_tree_trunk_diameter =  empty_float.nc
+file_tree_type =  ###INPUT_FILE_TREES_TYPE###
+file_patch_height =  ###INPUT_FILE_PATCH_HEIGHT###
+file_vegetation_on_roofs =  ###INPUT_FILE_EMPTY_FLOAT###

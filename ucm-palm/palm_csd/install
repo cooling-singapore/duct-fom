@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+#--------------------------------------------------------------------------------#
+# This file is part of the PALM model system.
+#
+# PALM is free software: you can redistribute it and/or modify it under the terms
+# of the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+#
+# PALM is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# PALM. If not, see <http://www.gnu.org/licenses/>.
+#
+# Copyright 1997-2021  Leibniz Universitaet Hannover
+#--------------------------------------------------------------------------------#
+# project install script
+#--------------------------------------------------------------------------------#
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+   DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+   SOURCE="$(readlink "$SOURCE")"
+   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+SCRIPT_LOCATION="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+project_root_dir=$(readlink -f "${SCRIPT_LOCATION}/")
+project_build_dir=$(readlink -f "${project_root_dir}/build/")
+project_share_dir=$(readlink -f "${project_root_dir}/share/")
+project_src_dir=$(readlink -f "${project_root_dir}/src/")
+
+install_prefix="${project_build_dir}"
+
+program_name="palm_csd"
+
+install_function() {
+   printf "### %s\n" "Installing ${program_name} ..."
+   install_bin_dir=${install_prefix}/bin
+   if [ "${do_clean}" == "true" ]; then
+      rm "${install_bin_dir}/palm_csd"
+   fi
+   mkdir -p ${install_bin_dir}
+   chmod a+x $(realpath "${project_root_dir}/main.py")
+   ln -s -f $(realpath --relative-to="${install_bin_dir}" "${project_root_dir}/main.py") "${install_bin_dir}/palm_csd"
+   printf "### %s\n" "Installing ${program_name} finished."
+}
+
+show_usage() {
+   echo "Usage: $0 [-h] [-p <install_prefix>] [-c <compiler>] [-s <path>] [-t <path>] [-x]"
+}
+
+show_help() {
+   show_usage
+   echo "      -h                     show this help message"
+   echo "      -p <install_prefix>    set installation directory"
+   echo "      -x                     clean already existing build files"
+}
+
+while getopts ":p:hx" o; do
+   case "${o}" in
+      p)
+         install_prefix="$(readlink -m "${OPTARG}")"
+         ;;
+      x)
+         do_clean="true"
+         ;;
+      h)
+         show_help
+         exit 0
+         ;;
+      *)
+         show_usage
+         exit 1
+         ;;
+   esac
+done
+# strip all parsed options from the options list
+shift $((OPTIND-1))
+
+install_function

@@ -1,0 +1,55 @@
+{
+    "name": "ucm-wrf-sim",
+    "input": [
+        {
+            "name": "parameters",
+            "data_type": "UCMWRF.SimParameters",
+            "data_format": "json",
+            "data_schema": {
+                "type": "object",
+                "title": "UCM-WRF-Sim Parameters",
+                "properties": {
+                    "name": {"type": "string"},
+                    "settings": {
+                        "type": "object",
+                        "title": "Technical Settings",
+                        "description": "Selected technical settings for WRF. DO NOT CHANGE the default values unless you know what you are doing.",
+                        "properties": {
+                            "pbs_project_id": {"type":  "string"},
+                            "pbs_queue": {"type": "string"}
+                        }
+                    }
+                },
+                "required": ["name"]
+            }
+        },
+        {
+            "name": "information",
+            "data_type": "JSONObject",
+            "data_format": "json"
+        },
+        {
+            "name": "wrf-prep-vv-package",
+            "data_type": "UCMWRF.PrepVisualValidationPackage",
+            "data_format": "archive(tar.gz)"
+        },
+        {
+            "name": "wrf-run-package",
+            "data_type": "UCMWRF.RunPackage",
+            "data_format": "archive(tar.gz)"
+        }
+    ],
+    "output": [
+        {
+            "name": "vv-package",
+            "data_type": "UCMWRF.SimVisualValidationPackage",
+            "data_format": "archive(tar.gz)"
+        },
+        {
+            "name": "d04-near-surface-climate",
+            "data_type": "DUCT.NearSurfaceClimateVariables",
+            "data_format": "hdf5"
+        }
+    ],
+    "configurations": ["gce-ubuntu-20.04", "nscc"]
+}

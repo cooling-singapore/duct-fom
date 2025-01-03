@@ -1,0 +1,20 @@
+#!/bin/bash
+#PBS -q ###QUEUE###
+#PBS -N ###NAME###
+#PBS -P ###PROJECT_ID###
+#PBS -l select=1:ncpus=###NCPUS###:mem=###MEM###
+#PBS -l walltime=###WALLTIME###
+#PBS -o ###LOG_PATH###
+
+module purge
+module load intel/2022.0.2 PrgEnv-intel/8.3.3 cray-netcdf/4.8.1.1 cray-hdf5/1.12.1.1 cray-parallel-netcdf/1.12.2.1 jasper/1.900.1
+export NETCDF=/opt/cray/pe/netcdf/4.8.1.1/INTEL/19.0
+export HDF5=/opt/cray/pe/hdf5/1.12.1.1/INTEL/19.0
+
+export WRF_DIR=$WRF_PATH/mWRF_SG-A
+export WPS_DIR=$WRF_PATH/WPS-A
+
+cd ###WD_PATH###
+###COMMAND###
+
+echo $? > ###EXITCODE_FILE###

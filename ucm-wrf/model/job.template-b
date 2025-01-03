@@ -1,0 +1,33 @@
+#!/bin/bash
+#PBS -q ###QUEUE###
+#PBS -N ###NAME###
+#PBS -P ###PROJECT_ID###
+#PBS -l select=1:ncpus=###NCPUS###:mem=###MEM###
+#PBS -l walltime=###WALLTIME###
+#PBS -o ###LOG_PATH###
+
+module swap PrgEnv-cray PrgEnv-intel
+module load cray-netcdf/4.8.1.1
+module load cray-hdf5/1.12.1.1
+module load cray-parallel-netcdf/1.12.2.1
+module load jasper/2.0.14
+module load mvapich/2.3.7-icc22
+
+export NETCDF=$NETCDF_DIR
+export PNETCDF=$PNETCDF_DIR
+export WRFIO_NCD_LARGE_FILE_SUPPORT=1
+export NETCDF4=1
+export HDF5=$HDF5_DIR
+export JASPERINC=$JASPER_DIR/include
+export JASPERLIB=$JASPER_DIR/lib64
+
+export WRF_DIR=$WRF_PATH/mWRF_SG-B
+export WPS_DIR=$WRF_PATH/WPS-B
+
+export OMP_NUM_THREADS=1
+export MV2_HOMOGENEOUS_CLUSTER=1
+
+cd ###WD_PATH###
+###COMMAND###
+
+echo $? > ###EXITCODE_FILE###

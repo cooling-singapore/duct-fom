@@ -1,0 +1,156 @@
+{
+    "name": "ucm-wrf-prep",
+    "input": [
+        {
+            "name": "parameters",
+            "data_type": "UCMWRF.PrepParameters",
+            "data_format": "json",
+            "data_schema": {
+                "type": "object",
+                "title": "UCM-WRF-Prep Parameters",
+                "properties": {
+                    "name": {"type": "string"},
+                    "t_from": {
+                        "type": "object",
+                        "title": "From Date/Time",
+                        "properties": {
+                            "date": {
+                                "type": "string",
+                                "title": "Date (format: yyyy-mm-dd)",
+                                "default": "2020-03-13"
+                            },
+                            "time": {
+                                "type": "string",
+                                "title": "Time (format: hh:mm:ss)",
+                                "default": "00:00:00"
+                            }
+                        },
+                        "required": ["date", "time"]
+                    },
+                    "t_to": {
+                        "type": "object",
+                        "title": "To Date/Time",
+                        "properties": {
+                            "date": {
+                                "type": "string",
+                                "title": "Date (format: yyyy-mm-dd)",
+                                "default": "2020-03-17"
+                            },
+                            "time": {
+                                "type": "string",
+                                "title": "Time (format: hh:mm:ss)",
+                                "default": "00:00:00"
+                            }
+                        },
+                        "required": ["date", "time"]
+                    },
+                    "frc_urb1": {
+                        "type": "number",
+                        "title": "FRC_URB (LCZ1)",
+                        "default": 0.66
+                    },
+                    "frc_urb2": {
+                        "type": "number",
+                        "title": "FRC_URB (LCZ2)",
+                        "default": 0.65
+                    },
+                    "frc_urb3": {
+                        "type": "number",
+                        "title": "FRC_URB (LCZ3)",
+                        "default": 0.65
+                    },
+                    "frc_urb4": {
+                        "type": "number",
+                        "title": "FRC_URB (LCZ4)",
+                        "default": 0.48
+                    },
+                    "frc_urb5": {
+                        "type": "number",
+                        "title": "FRC_URB (LCZ5)",
+                        "default": 0.48
+                    },
+                    "frc_urb6": {
+                        "type": "number",
+                        "title": "FRC_URB (LCZ6)",
+                        "default": 0.48
+                    },
+                    "frc_urb7": {
+                        "type": "number",
+                        "title": "FRC_URB (LCZ7)",
+                        "default": 0.9
+                    },
+                    "frc_urb8": {
+                        "type": "number",
+                        "title": "FRC_URB (LCZ8)",
+                        "default": 0.78
+                    },
+                    "frc_urb9": {
+                        "type": "number",
+                        "title": "FRC_URB (LCZ9)",
+                        "default": 0.13
+                    },
+                    "frc_urb10": {
+                        "type": "number",
+                        "title": "FRC_URB (LCZ10)",
+                        "default": 0.8
+                    },
+                    "settings": {
+                        "type": "object",
+                        "title": "Technical Settings",
+                        "description": "Selected technical settings for WRF. DO NOT CHANGE the default values unless you know what you are doing.",
+                        "properties": {
+                            "pbs_project_id": {"type":  "string"},
+                            "pbs_queue": {"type": "string"}
+                        },
+                        "required": ["pbs_project_id", "pbs_queue"]
+                    }
+                },
+                "required": ["name", "t_from", "t_to", "frc_urb1", "frc_urb2", "frc_urb3", "frc_urb4", "frc_urb5",
+                    "frc_urb6", "frc_urb7", "frc_urb8", "frc_urb9", "frc_urb10"]
+            }
+        },
+        {
+            "name": "information",
+            "data_type": "JSONObject",
+            "data_format": "json"
+        },
+        {
+            "name": "bem-parameters",
+            "data_type": "DUCT.WRFBEMParameters",
+            "data_format": "txt"
+        },
+        {
+            "name": "lcz-map",
+            "data_type": "DUCT.GeoRasterData",
+            "data_format": "tiff"
+        },
+        {
+            "name": "vegfra-map",
+            "data_type": "DUCT.GeoRasterData",
+            "data_format": "tiff"
+        },
+        {
+            "name": "lh-profile",
+            "data_type": "DUCT.AHProfile",
+            "data_format": "archive(tar.gz)"
+        },
+        {
+            "name": "sh-profile",
+            "data_type": "DUCT.AHProfile",
+            "data_format": "archive(tar.gz)"
+        }
+    ],
+    "output": [
+        {
+            "name": "vv-package",
+            "data_type": "UCMWRF.PrepVisualValidationPackage",
+            "data_format": "archive(tar.gz)"
+        },
+        {
+            "name": "wrf-run-package",
+            "data_type": "UCMWRF.RunPackage",
+            "data_format": "archive(tar.gz)"
+        }
+    ],
+    "configurations": ["gce-ubuntu-20.04", "nscc"]
+}

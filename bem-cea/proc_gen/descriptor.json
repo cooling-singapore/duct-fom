@@ -1,0 +1,76 @@
+{
+  "name": "bem-cea-gen",
+  "input": [
+    {
+      "name": "parameters",
+      "data_type": "BEMCEA.GenParameters",
+      "data_format": "json",
+      "data_schema": {
+        "type": "object",
+        "title": "BEM-CEA-Gen Parameters",
+        "properties": {
+          "building_type_mapping": {
+            "description": "Mapping of CEA building types to building types found in building-footprints",
+            "type": "object"
+          },
+          "default_building_type": {
+            "description": "Default CEA building type for building types that could not be mapped",
+            "type": "string",
+            "default": "MULTI_RES"
+          },
+          "building_standard_mapping": {
+            "description": "Mapping of CEA building standards to building types found in building-footprints",
+            "type": "object"
+          },
+          "default_building_standard": {
+            "description": "Default CEA building standards for building standards that could not be mapped",
+            "type": "string",
+            "default": "STANDARD1"
+          },
+          "commit_id": {
+            "description": "Commit ID of CEA git repository",
+            "type": "string"
+          },
+          "database_name": {
+            "description": "Name of database found in CEA",
+            "type": "string"
+          },
+          "terrain_height": {
+            "description": "Elevation (m) of terrain in the area, from sea level",
+            "type": "number",
+            "default": 0
+          },
+          "weather": {
+            "description": "Name of weather file provided by CEA",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "building_footprints",
+      "data_type": "DUCT.GeoVectorData",
+      "data_format": "geojson"
+    },
+    {
+      "name": "bld_eff_standards",
+      "data_type": "BEMCEA.BldEffStandards",
+      "data_format": "zip"
+    }
+  ],
+  "output": [
+    {
+      "name": "cea_run_package",
+      "data_type": "BEMCEA.RunPackage",
+      "data_format": "archive(zip)"
+    },
+    {
+      "name": "cea_databases",
+      "data_type": "BEMCEA.Databases",
+      "data_format": "archive(zip)"
+    }
+  ],
+  "configurations": [
+    "default"
+  ]
+}

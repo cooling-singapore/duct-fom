@@ -1,0 +1,43 @@
+{
+    "name": "ucm-palm-prep",
+    "input": [
+        {
+            "name": "parameters",
+            "data_type": "UCMPALM.PrepParameters",
+            "data_format": "json"
+        },
+        {
+            "name": "information",
+            "data_type": "JSONObject",
+            "data_format": "json"
+        },
+        {
+            "name": "landcover",
+            "data_type": "duct.urban_geometries",
+            "data_format": "geojson"
+        },
+        {
+            "name": "buildings",
+            "data_type": "duct.urban_geometries",
+            "data_format": "geojson"
+        },
+        {
+            "name": "vegetation",
+            "data_type": "duct.urban_geometries",
+            "data_format": "geojson"
+        }
+    ],
+    "output": [
+        {
+            "name": "vv-package",
+            "data_type": "UCMPALM.PrepVisualValidationPackage",
+            "data_format": "archive(tar.gz)"
+        },
+        {
+            "name": "palm-run-package",
+            "data_type": "UCMPALM.RunPackage",
+            "data_format": "archive(tar.gz)"
+        }
+    ],
+    "configurations": ["default"]
+}

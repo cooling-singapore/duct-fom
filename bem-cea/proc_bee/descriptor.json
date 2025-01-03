@@ -1,0 +1,108 @@
+{
+  "name": "bem-cea-bee",
+  "input": [
+    {
+      "name": "cea_run_package",
+      "data_type": "BEMCEA.RunPackage",
+      "data_format": "archive(zip)"
+    },
+    {
+      "name": "cea_databases",
+      "data_type": "BEMCEA.Databases",
+      "data_format": "archive(zip)"
+    },
+    {
+      "name": "parameters",
+      "data_type": "BEMCEA.SimParameters",
+      "data_format": "json",
+      "data_schema": {
+        "type": "object",
+        "title": "BEM-CEA-Sim Parameters",
+        "properties": {
+          "pv": {
+            "type": "object",
+            "title": "PV paramters",
+            "description": "Parameters for PV potential simulation",
+            "properties": {
+              "roof": {
+                "title": "PV on Roof",
+                "description": "If panels are considered on roof surfaces",
+                "type": "boolean",
+                "default": "true"
+              },
+              "walls": {
+                "title": "PV on Walls",
+                "description": "If panels are considered on wall surfaces",
+                "type": "boolean",
+                "default": "true"
+              },
+              "annual_radiation_threshold": {
+                "title": "Annual Radiation Threshold",
+                "description": "Only consider panels on surfaces that receive radiation above the defined threshold [kWh/m2/yr]",
+                "type": "number",
+                "default": "800"
+              },
+              "custom_tilt_angle": {
+                "title": "Custom Tilt Angle",
+                "description": "Calculate solar panel potential based on a user-specified panel tilt angle. If False, the optimal tilt angle will be used for the calculation.",
+                "type": "boolean",
+                "default": "false"
+              },
+              "tilt_angle": {
+                "title": "Tilt Angle",
+                "description": "Solar panel tilt angle if using user-defined tilt angle. Only considered if `custom_tilt_angle` parameter is True.",
+                "type": "number",
+                "default": "10"
+              },
+              "max_roof_coverage": {
+                "title": "Maximum Roof Coverage",
+                "description": "Maximum panel coverage [m2/m2] of roof surfaces that reach minimum irradiation threshold (valid values between 0 and 1).",
+                "type": "number",
+                "default": "1.0"
+              },
+              "type_pv": {
+                "description": "Type of PV",
+                "type": "string",
+                "enum": [
+                  "Generic monocrystalline",
+                  "Generic polycrystalline",
+                  "Generic amorphous silicon"
+                ],
+                "default": "Generic monocrystalline"
+              }
+            },
+            "required": [
+              "roof",
+              "walls",
+              "annual_radiation_threshold",
+              "custom_tilt_angle",
+              "tilt_angle",
+              "max_roof_coverage",
+              "type_pv"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "output": [
+    {
+      "name": "annual_energy_demand",
+      "data_type": "BEMCEA.AnnualEnergyDemand",
+      "data_format": "json"
+    },
+    {
+      "name": "pv_potential",
+      "data_type": "BEMCEA.BuildingPVPotential",
+      "data_format": "json"
+    },
+    {
+      "name": "ah_emissions",
+      "data_type": "BEMCEA.AHEmissions",
+      "data_format": "csv"
+    }
+  ],
+  "configurations": [
+    "default"
+  ]
+}

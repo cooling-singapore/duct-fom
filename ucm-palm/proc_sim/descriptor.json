@@ -1,0 +1,33 @@
+{
+    "name": "ucm-palm-sim",
+    "input": [
+        {
+            "name": "parameters",
+            "data_type": "UCMPALM.SimParameters",
+            "data_format": "json"
+        },
+        {
+            "name": "information",
+            "data_type": "JSONObject",
+            "data_format": "json"
+        },
+        {
+            "name": "palm-run-package",
+            "data_type": "UCMPALM.RunPackage",
+            "data_format": "archive(tar.gz)"
+        }
+    ],
+    "output": [
+        {
+            "name": "climatic-variables",
+            "data_type": "DUCT.ClimateVariables",
+            "data_format": "hdf5"
+        },
+        {
+            "name": "vv-package",
+            "data_type": "UCMPALM.SimVisualValidationPackage",
+            "data_format": "archive(tar.gz)"
+        }
+    ],
+    "configurations": ["nscc"]
+}

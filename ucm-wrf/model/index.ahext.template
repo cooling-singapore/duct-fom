@@ -1,0 +1,16 @@
+type=continuous
+    projection = regular_ll
+    missing_value = 0.
+    dx=0.0026990952380951884
+    dy=0.0026983217054263567
+    known_x = 1
+    known_y = 129
+    known_lon = 103.546360
+    known_lat = 1.532738
+    wordsize = 4
+    tile_x = 210
+    tile_y = 129
+    tile_z = 264
+    units = "-"
+    scale_factor = 0.01
+    description = "###DESCRIPTION###"

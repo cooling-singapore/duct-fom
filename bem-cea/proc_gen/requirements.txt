@@ -1,0 +1,4 @@
+geopandas
+rasterio
+openpyxl
+pyproj~=3.5.0

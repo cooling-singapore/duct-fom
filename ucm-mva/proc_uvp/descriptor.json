@@ -1,0 +1,73 @@
+{
+    "name": "ucm-mva-uvp",
+    "input": [
+        {
+            "name": "parameters",
+            "data_type": "UCMMVA.UVPParameters",
+            "data_format": "json",
+            "data_schema": {
+                "type": "object",
+                "title": "UCM-MVA-UVP Parameters",
+                "properties": {
+                    "bounding_box": {
+                        "type": "object",
+                        "title": "Bounds",
+                        "description": "Default bounds is Singapore.",
+                        "properties": {
+                            "west": {
+                                "type": "number",
+                                "title": "West (in degrees longitude)",
+                                "default": 103.55161
+                            },
+                            "east": {
+                                "type": "number",
+                                "title": "East (in degrees longitude)",
+                                "default": 104.14966
+                            },
+                            "north": {
+                                "type": "number",
+                                "title": "North (in degrees latitude)",
+                                "default": 1.53428
+                            },
+                            "south": {
+                                "type": "number",
+                                "title": "South (in degrees latitude)",
+                                "default": 1.19921
+                            }
+                        },
+                        "required": [
+                            "west",
+                            "east",
+                            "north",
+                            "south"
+                        ]
+                    },
+                    "resolution": {
+                        "type": "integer",
+                        "title": "Resolution",
+                        "default": 300
+                    }
+                },
+                "required": ["bounding_box", "resolution"]
+            }
+        },
+        {
+            "name": "building-footprints",
+            "data_type": "DUCT.GeoVectorData",
+            "data_format": "geojson"
+        },
+        {
+            "name": "land-mask",
+            "data_type": "DUCT.GeoVectorData",
+            "data_format": "geojson"
+        }
+    ],
+    "output": [
+        {
+            "name": "hotspots",
+            "data_type": "DUCT.GeoRasterData",
+            "data_format": "tiff"
+        }
+    ],
+    "configurations": ["gce-ubuntu-22.04"]
+}
