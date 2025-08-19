@@ -1,0 +1,11 @@
+{
+	"xWest" : "###WEST###",
+	"xEast" : "###EAST###",
+	"ySouth" : "###SOUTH###",
+	"yNorth" : "###NORTH###",
+	"zLower" : "###LOWER###",
+	"zUpper" : "###UPPER###",
+	"xCoeff" : "0.43833641097346876",
+	"yCoeff" : "0.43833641097346876",
+	"zCoeff" : "0.13714275747992313"
+}

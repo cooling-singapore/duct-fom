@@ -1,0 +1,28 @@
+{
+    "name": "ucm-scout",
+    "input": [
+        {
+            "name": "parameters",
+            "data_type": "ucmscout.Parameters",
+            "data_format": "json"
+        },
+        {
+            "name": "building-footprints",
+            "data_type": "DUCT.GeoVectorData",
+            "data_format": "geojson"
+        }
+    ],
+    "output": [
+        {
+            "name": "climatic-variables",
+            "data_type": "DUCT.ClimateVariables",
+            "data_format": "hdf5"
+        },
+        {
+            "name": "vv-package",
+            "data_type": "ucmscout.VisualValidationPackage",
+            "data_format": "archive(tar.gz)"
+        }
+    ],
+    "configurations": ["default"]
+}

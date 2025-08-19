@@ -1,0 +1,21 @@
+#!/bin/bash 
+#PBS -l select=2:ncpus=24:mpiprocs=24:mem=440gb
+#PBS -l walltime=24:00:00  
+#PBS -P 21120261
+#PBS -N ###JOBNAME###
+#PBS -o ###JOBNAME###.stdout
+#PBS -e ###JOBNAME###.stderr
+
+cd $PBS_O_WORKDIR
+module load gcc/11.2.0 cray-hdf5/1.12.1.1 libfabric/1.11.0.4.125
+source /home/project/21120261/duct-cubes/OpenFOAM/OpenFOAM-v2012/etc/bashrc
+blockMesh > log.blockMesh 2>error.blockMesh
+decomposePar -force -copyZero >log.decomposePar 2>error.decomposePar
+surfaceFeatureExtract > log.surfaceFeatureExtract 2>error.surfaceFeatureExtract
+mpirun -np 48 snappyHexMesh -parallel -overwrite > log.snappyHexMesh 2>error.snappyHexMesh
+mpirun -np 48 topoSet -parallel  > log.topoSet1 2>error.topoSet1
+mpirun -np 48 createPatch -parallel -overwrite > log.createPatch1 2>error.createPatch1
+mpirun -np 48 topoSet -parallel -dict system/topoSetDict1 > log.topoSet2 2>error.topoSet2
+mpirun -np 48 createPatch -parallel -overwrite -dict system/createPatchDict1 > log.createPatch2 2>error.createPatch2
+mpirun -np 48 unsteadyThermalFoam -parallel  > log.unsteadyThermalFoam 2>error.unsteadyThermalFoam
+mpirun -np 48 postProcess -parallel -func predefinedSampleDict > log.postProcess 2>error.postProcess
