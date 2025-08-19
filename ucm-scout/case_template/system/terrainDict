@@ -1,0 +1,29 @@
+/*--------------------------------*- C++ -*----------------------------------*\ 
+| =========                 |                                                 |
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \    /   O peration     | Version:  v1812                                |
+|   \  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+version     2.0;
+format      ascii;
+class       dictionary;
+object     terrainDict;
+}
+
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * // 
+
+masterTerrainFile  "/opt/OpenFOAM/newSG_V3.stl";
+name    "trials.stl";
+extend  true;
+modify  true;
+patch   "lower";
+maxSlope 10.0;
+cleanOnly false;
+DEM10   false;
+pXY     (6 4);
+tolerance 1.0;
+boundingBox ((40000.0 32000.0 -10) (40203.0 32203.0 89.0));

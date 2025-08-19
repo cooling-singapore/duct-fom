@@ -1,0 +1,79 @@
+/*--------------------------------*- C++ -*----------------------------------*\ 
+| =========                 |                                                 |
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \    /   O peration     | Version:  v1812                                |
+|   \  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+version     2.0;
+format      ascii;
+class       dictionary;
+object     topoSetDict;
+}
+
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * // 
+
+actions
+(
+{
+name dummy;
+type cellSet;
+action new;
+source boxToCell; 
+sourceInfo
+{
+box (39435.406250 31435.406250 0.000000)(40767.593750 32767.593750 556.250000);
+}
+}
+{
+name dummytemp;
+type cellSet;
+action new;
+source surfaceToCell; 
+sourceInfo
+{
+file "constant/triSurface/###STL_NAME###.stl";
+useSurfaceOrientation false;
+outsidePoints ((40101.500000 32101.500000 115.700000));
+includeCut true; 
+includeInside true;
+includeOutside false;
+nearDistance -1;
+curvature -100;
+}
+}
+{
+name	###STL_NAME###;
+type	faceSet;
+action  new;
+source  cellToFace;
+sourceInfo
+{
+set dummytemp;
+option all;
+}
+}
+{
+name dummy;
+type cellSet;
+action delete;
+source cellToCell;
+sourceInfo
+{
+set dummytemp;
+}
+}
+{
+name rboundary;
+type cellZoneSet;
+action new;
+source setToCellZone;
+sourceInfo
+{
+set dummy;
+}
+}
+);

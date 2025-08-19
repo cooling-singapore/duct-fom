@@ -8,6 +8,7 @@ The following third party model systems have been onboarded through correspondin
 - [WRF (Weather Research and Forecasting) for mesoscale urban climate modelling](ucm-wrf/README.md).
 - [Palm for microscale urban climate modelling](ucm-palm/README.md).
 - [CEA (City Energy Analyst) for building energy system modelling](bem-cea/README.md).
+- [OpenFOAM-based Scout model by A*STAR for microscale urban climate modelling](ucm-scout/README.md).
 
 Cooling Singapore researchers developed custom models that have also been onboarded using corresponding Simulation-as-a-Service adapters:
 - [MVA (Multivariate Analysis) for urban ventilarion and wind corridor modelling](ucm-mva/README.md).

@@ -1,0 +1,107 @@
+/*--------------------------------*- C++ -*----------------------------------*\ 
+| =========                 |                                                 |
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \    /   O peration     | Version:  v1812                                |
+|   \  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+version     2.0;
+format      ascii;
+class      volScalarField;
+location   0;
+object     nut;
+}
+
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * // 
+
+dimensions	  [0 2 -1 0 0 0 0];
+
+internalField	  uniform 0.9;
+
+boundaryField
+	{
+	 "procBoundary.*" 
+	 	 { 
+	 	 	 type processor;
+	 	}
+	 west 
+ 	 	 { 
+	 	 	 type unsteadyABLInflowNut;
+	 	 	 ZRef 5.0;
+	 	 	 Prt 1.0;
+	 	 	 z0 0.05;
+	 	 	 value uniform 0.9;
+;
+	 	 }
+	 east 
+ 	 	 { 
+	 	 	 type unsteadyABLInflowNut;
+	 	 	 ZRef 5.0;
+	 	 	 Prt 1.0;
+	 	 	 z0 0.05;
+	 	 	 value uniform 0.9;
+;
+	 	 }
+	 north 
+ 	 	 { 
+	 	 	 type unsteadyABLInflowNut;
+	 	 	 ZRef 5.0;
+	 	 	 Prt 1.0;
+	 	 	 z0 0.05;
+	 	 	 value uniform 0.9;
+;
+	 	 }
+	 south 
+ 	 	 { 
+	 	 	 type unsteadyABLInflowNut;
+	 	 	 ZRef 5.0;
+	 	 	 Prt 1.0;
+	 	 	 z0 0.05;
+	 	 	 value uniform 0.9;
+;
+	 	 }
+	 upper 
+ 	 	 { 
+	 	 	 type unsteadyABLInflowNut;
+	 	 	 ZRef 5.0;
+	 	 	 Prt 1.0;
+	 	 	 z0 0.05;
+	 	 	 value uniform 0.9;
+;
+	 	 }
+	 nonstl 
+ 	 	 { 
+	 	 	 type ABLMOWallNut;
+	 	 	 Prt 1.0;
+	 	 	 z0 0.05;
+	 	 	 value uniform 0.9;
+;
+	 	 }
+	 ###STL_NAME### 
+ 	 	 { 
+	 	 	 type ABLLouisWallNut;
+	 	 	 Prt 1.0;
+	 	 	 z0 0.05;
+	 	 	 value uniform 0.9;
+;
+	 	 }
+	 lower 
+ 	 	 { 
+	 	 	 type ABLLouisWallNut;
+	 	 	 Prt 1.0;
+	 	 	 z0 0.05;
+	 	 	 value uniform 0.9;
+;
+	 	 }
+	 bufferstl 
+ 	 	 { 
+	 	 	 type ABLLouisWallNut;
+	 	 	 Prt 1.0;
+	 	 	 z0 0.05;
+	 	 	 value uniform 0.9;
+;
+	 	 }
+	}

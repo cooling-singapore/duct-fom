@@ -1,0 +1,9 @@
+numpy~=1.23.5
+numpy-stl
+gmsh~=4.11.0
+rasterio~=1.3.4
+pytest
+python-dotenv
+shapely
+scipy
+pyproj
